@@ -3,15 +3,18 @@ import filmueb.data.Movie;
 import filmueb.data.Series;
 import java.util.Scanner;
 
-
 public class Filmueb
 {
     public static void main(String[] args)
     {
+/*      String[] tabAct = new String[3];
+        String[] tabMovie = new String[6];
+        String[] tabSer = new String[7];*/
+
         Scanner sc = new Scanner(System.in);
         ConsoleDataReader cdr = new ConsoleDataReader();
 
-        String version = "0.2";
+        String version = "0.3";
 
         //Actor act1 = new Actor("Tom","Cruise","USA");
         //Movie mov1 = new Movie("Top Gun","Tony Scott","Sensacyjny, Romans","Uczniowie elitarnej jednostki lotniczej, Maverick i Tom Kasansky, rywalizują o tytuł najlepszego pilota.",1986,7.5);
@@ -19,9 +22,12 @@ public class Filmueb
 
         System.out.println("Wersja " + version);
         String object = "Nowy obiekt = ";
+        boolean choice = true;
 
-        System.out.println("\nWpisz 1,2 lub 3 aby dodać do bazy:\n1. Aktora\n2. Film\n3. Serial");
+        while (choice) {
+        System.out.println("\nWybierz jedną z poniższych opcji:\n1. Dodaj aktora\n2. Dodaj film\n3. Dodaj serial\n4. Wyświetl wszystkie informacje\n5. Zakończ");
         int ans = sc.nextInt();
+        sc.nextLine();
         switch (ans)
         {
             case 1:
@@ -53,8 +59,17 @@ public class Filmueb
                     System.out.println("\n"+ser);
                 }
                 break;
+            case 4:
+                cdr.viewData();
+                break;
+            case 5:
+                choice = false;
+                break;
             default:
                 System.out.println("Odpowiedź błędna.");
         }
+
+        }
+
     }
 }

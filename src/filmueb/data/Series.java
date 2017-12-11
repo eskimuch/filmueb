@@ -1,7 +1,5 @@
 package filmueb.data;
 
-import java.rmi.ServerError;
-
 public class Series
 {
     private String name, producer, genre, description;

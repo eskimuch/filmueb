@@ -14,7 +14,16 @@ public class ConsoleDataReader
     private String genre = "Wprowadź gatunek: ";
     private String description = "Wprowadź opis: ";
     private String rating = "Wprowadź ocenę: ";
-    private String value = "Wprowadź ilość: ";
+    private String value = "Wprowadź ilość ";
+
+    private Actor[] tabAct = new Actor[10];
+    private Movie[] tabMovie = new Movie[10];
+    private Series[] tabSer = new Series[10];
+
+    private int xAct = -1;
+    private int xMov = -1;
+    private int xSer = -1;
+
 
     Series createSeries()
     {
@@ -22,20 +31,20 @@ public class ConsoleDataReader
         Series series = new Series();
 
         System.out.println(name);
-        String seriesName = sc.nextLine();
-        series.setName(seriesName);
+        //String seriesName = sc.nextLine();
+        series.setName(sc.nextLine());
 
         System.out.println(producer);
-        String seriesProducer = sc.nextLine();
-        series.setProducer(seriesProducer);
+        //String seriesProducer = sc.nextLine();
+        series.setProducer(sc.nextLine());
 
         System.out.println(genre);
-        String seriesGenre = sc.nextLine();
-        series.setGenre(seriesGenre);
+        //String seriesGenre = sc.nextLine();
+        series.setGenre(sc.nextLine());
 
         System.out.println(description);
-        String seriesDescription = sc.nextLine();
-        series.setDescription(seriesDescription);
+        //String seriesDescription = sc.nextLine();
+        series.setDescription(sc.nextLine());
 
         System.out.println(value+"sezonów: ");
         int seriesSeriesVolume = sc.nextInt();
@@ -77,7 +86,8 @@ public class ConsoleDataReader
         }
 
         System.out.println("\nNowy serial"+addEnd);
-        return series;
+        xSer++;
+        return tabSer[xSer]=series;
     }
 
     Movie createMovie()
@@ -128,7 +138,8 @@ public class ConsoleDataReader
         }
 
         System.out.println("\nNowy film"+addEnd);
-        return movie;
+        xMov++;
+        return tabMovie[xMov] = movie;
     }
 
     Actor createActor()
@@ -146,6 +157,22 @@ public class ConsoleDataReader
         actor.setCountry(actorCountry);
         System.out.println("\nNowy aktor"+addEnd);
 
-        return actor;
+        xAct++;
+        return tabAct[xAct] = actor;
     }
+
+    void viewData()
+    {
+        for (int x=0; x<=xAct; x++)
+            System.out.println("\n"+tabAct[x].getName() + " " + tabAct[x].getSurname() + "\nKraj pochodzenia: " + tabAct[x].getCountry());
+
+        //for (Actor actor : tabAct)
+
+        for (int x=0; x<=xMov; x++)
+            System.out.println("\n"+tabMovie[x].getName() + "\nReżyser: " + tabMovie[x].getDirector() + "\nGatunek: " + tabMovie[x].getGenre() + "\nOpis: " + tabMovie[x].getDescription() + "\nRok produckji: " + tabMovie[x].getProductionYear() + "\nOcena: " + tabMovie[x].getRating());
+
+        for (int x=0; x<=xSer; x++)
+            System.out.println("\n"+tabSer[x].getName() + "\nProducent: " + tabSer[x].getProducer() + "\nGatunek: " + tabSer[x].getGenre() + "\nOpis: " + tabSer[x].getDescription() + "\nIlość sezonów: " + tabSer[x].getSeriesVolume() + "\nIlość odcinków: " + tabSer[x].getEpisodesVolume() + "\nOcena: " + tabSer[x].getRating());
+    }
+
 }
